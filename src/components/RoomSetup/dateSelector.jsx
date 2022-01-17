@@ -8,21 +8,26 @@ export default class DateSelector extends React.Component {
     this.handleDayClick = this.handleDayClick.bind(this);
     this.state = {
       selectedDays: [],
+      startDate: "17-01-2022",
+      endDate: "18-01-2022",
     };
   }
 
   handleDayClick(day, { selected }) {
     const selectedDays = this.state.selectedDays.concat();
+    let startDate = this.state.startDate
+    let endDate = this.state.endDate
     if (selected) {
       const selectedIndex = selectedDays.findIndex(selectedDay =>
         DateUtils.isSameDay(selectedDay, day)
       );
       selectedDays.splice(selectedIndex, 1);
-      console.log(selectedDays)
     } else {
       selectedDays.push(day);
-      console.log(selectedDays)
     }
+    const formattedDays = selectedDays.map(date => date.toISOString().split('T')[0]);
+    const sortedArray = formattedDays.sort();
+    console.log(sortedArray);
     this.setState({ selectedDays });
   }
 
