@@ -11,7 +11,7 @@ const RoomSetup = (props) => {
   // STATE HANDLING
   // ---------------
 
-  // const dateSelector = <DateSelector/>
+  const dateSelector = <DateSelector/>
 
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, '0');
@@ -20,8 +20,8 @@ const RoomSetup = (props) => {
   
   today = dd + '/' + mm + '/' + yyyy;
 
-  const [startDate, setStartDate] = useState(today);
-  const [endDate, setEndDate] = useState(today);
+  const [startDate, setStartDate] = useState(dateSelector.startDate);
+  const [endDate, setEndDate] = useState(dateSelector.endDate);
   const [friendCount, setFriendCount] = useState(3);
 
   const handleStartDate = (event) => {
