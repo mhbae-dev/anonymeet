@@ -10,8 +10,15 @@ const RoomSetup = (props) => {
   // STATE HANDLING
   // ---------------
 
-  const [startDate, setStartDate] = useState("2022-01-12");
-  const [endDate, setEndDate] = useState("2022-01-19");
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, '0');
+  let mm = String(today.getMonth() + 1).padStart(2, '0');
+  let yyyy = today.getFullYear();
+  
+  today = mm + '/' + dd + '/' + yyyy;
+
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(today);
   const [friendCount, setFriendCount] = useState(3);
 
   const handleStartDate = (event) => {
