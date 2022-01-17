@@ -60,7 +60,7 @@ const RoomSetup = (props) => {
     <div className="roomsetup">
       <div className="roomsetup_form">
         <form onSubmit={handleSubmit}>
-          <label>Start Date
+          <label>Start Dates
             <input 
               type='date' 
               placeholder='dd/mm/yyyy'
