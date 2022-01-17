@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams, useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { useState } from 'react'
+import DateSelector from './dateSelector';
 
 const RoomSetup = (props) => {
   let navigate = useNavigate();
@@ -9,6 +10,10 @@ const RoomSetup = (props) => {
   // ---------------
   // STATE HANDLING
   // ---------------
+
+  const dateSelector = <DateSelector/>
+
+  console.log(dateSelector)
 
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, '0');
@@ -67,7 +72,8 @@ const RoomSetup = (props) => {
     <div className="roomsetup">
       <div className="roomsetup_form">
         <form onSubmit={handleSubmit}>
-          <label>Start Dates
+          <DateSelector/> 
+          {/* <label>Start Dates
             <input 
               type='date' 
               placeholder='dd/mm/yyyy'
@@ -84,7 +90,7 @@ const RoomSetup = (props) => {
               value={endDate}
               onChange={handleEndDate}>
             </input>
-          </label>
+          </label> */}
           <label>Number of Attendees
             <input
               type='number'
