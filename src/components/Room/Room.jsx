@@ -68,8 +68,9 @@ const Room = (props) => {
   const setResult = () => {
     const roomForms = state.roomFormsRatings
     if(!finalResult.isReady(roomForms)) return <h2>Waiting for results...</h2>;
-    const bestDay = finalResult.getBestDay(roomForms)
-    const medalCounts = finalResult.medalCounts(roomForms, bestDay)
+    const bestDay = finalResult.getBestDay(roomForms),
+      highscoreDay = finalResult.getHighscoreDay(roomForms), 
+      medalCounts = finalResult.medalCounts(roomForms, bestDay)
     if(bestDay < 0) return <h2>No one is available on any date! <br></br> Perhaps try different dates?</h2>;
     return (
       <div>
@@ -79,6 +80,8 @@ const Room = (props) => {
         <p>Gold: {medalCounts[0]}</p>
         <p>Silver: {medalCounts[1]}</p>
         <p>Bronze: {medalCounts[2]}</p>
+        <p>The post popular day:</p>
+        <p className="result">{day.toCalDate(state.startDate, highscoreDay)}</p>
       </div>
     );
   };

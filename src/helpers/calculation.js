@@ -1,12 +1,5 @@
-const testData = [
-  [0, 1, 0, 0, 2, 2],
-  [0, 0, 1, 0, 2, 0],
-  [0, 1, 2, 1, 2, 2],
-];
-
 const isReady = (formsArr) => {
   const valueArr = formsArr.map((form) => form.length);
-  //   console.log("Form Lengths: " + valueArr);
   return !valueArr.includes(0);
 };
 
@@ -16,7 +9,6 @@ const isReady = (formsArr) => {
 
 const allAvailableForDay = (formsArr, dayIndex) => {
   const available = formsArr.map((form) => form[dayIndex]);
-  //   console.log(`Preferences for day ${dayIndex}: ` + available);
   return !available.includes(0);
 };
 
@@ -45,10 +37,8 @@ const dayScore = (formsArr, dayIndex) => {
   return score;
 };
 
-const dayScores = (formsArr) => {
-  const scores = formsArr[0].map((_day, i) => dayScore(formsArr, i));
-  return scores;
-};
+const dayScores = (formsArr) =>
+  formsArr[0].map((_day, i) => dayScore(formsArr, i));
 
 const bestDays = (formsArr) => {
   const aScores = availableScores(formsArr);
@@ -82,30 +72,29 @@ const getBestDay = (formsArr) => {
   return bestDaysArr[0];
 };
 
-const medalCounts = (formsArr, bestDay) => {
-  return [
-    getMedalCount(formsArr, bestDay, 3),
-    getMedalCount(formsArr, bestDay, 2),
-    getMedalCount(formsArr, bestDay, 1),
-  ];
+const getHighscoreDay = (formsArr) => {
+  const scores = dayScores(formsArr);
+  const highScore = Math.max(...scores);
+  return scores.indexOf(highScore);
 };
 
+const medalCounts = (formsArr, bestDay) =>
+  [3, 2, 1].map((val) => getMedalCount(formsArr, bestDay, val));
+
 const finalResult = {
-  getBestDay,
   isReady,
+  getBestDay,
   medalCounts,
+  getHighscoreDay,
 };
 
 module.exports = finalResult;
 
-// What days are everyone free? DONE
-// Of those days, which are the best?
-// Of the best, which are the soonest?
-// console.log(allFormsComplete(testData));
-// console.log(allAvailableForDay(testData, 0));
-// console.log(allAvailableForDay(testData, 1));
-// console.log(availableDays(testData)); // expect: [1, 4]
-// console.log(dayScore(testData, 2)); // 4
-// console.log(dayScores(testData)); // [0, 4, 3, 1, 5]
-// console.log(getBestDay(testData)); // [4, 5]
-console.log(medalCounts(testData, 4)); // 1
+// const testData = [
+//   [0, 1, 0, 0, 3, 2],
+//   [0, 0, 1, 0, 0, 1],
+//   [0, 1, 2, 1, 3, 2],
+// ];
+
+// console.log(getBestDay(testData));
+// console.log(getHighscoreDay(testData));
