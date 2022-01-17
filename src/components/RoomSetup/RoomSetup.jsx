@@ -11,7 +11,7 @@ const RoomSetup = (props) => {
   // STATE HANDLING
   // ---------------
 
-  const dateSelector = <DateSelector/>
+  // const dateSelector = <DateSelector/>
 
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, '0');
