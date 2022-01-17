@@ -41,7 +41,7 @@ export default class DateSelector extends React.Component {
           selectedDays={this.state.selectedDays}
           onDayClick={this.handleDayClick}
           startDate={this.handleDayClick}
-          endDate={this.state.selectedDays[-1]}
+          endDate={this.handleDayClick}
         />
       </div>
     );
