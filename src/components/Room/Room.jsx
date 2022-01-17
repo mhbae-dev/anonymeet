@@ -70,18 +70,17 @@ const Room = (props) => {
     if(!finalResult.isReady(roomForms)) return <h2>Waiting for results...</h2>;
     const bestDay = finalResult.getBestDay(roomForms),
       highscoreDay = finalResult.getHighscoreDay(roomForms), 
-      medalCounts = finalResult.medalCounts(roomForms, bestDay)
+      medalCounts = finalResult.medalCounts(roomForms, bestDay),
+      soonestDay = finalResult.getSoonestDay(roomForms)
     if(bestDay < 0) return <h2>No one is available on any date! <br></br> Perhaps try different dates?</h2>;
     return (
       <div>
         <h2>SUCCESS!</h2>
         <p>The best day for everyone:</p>
         <p className="result">{day.toCalDate(state.startDate, bestDay)}</p>
-        <p>Gold: {medalCounts[0]}</p>
-        <p>Silver: {medalCounts[1]}</p>
-        <p>Bronze: {medalCounts[2]}</p>
-        <p>The post popular day:</p>
-        <p className="result">{day.toCalDate(state.startDate, highscoreDay)}</p>
+        <p>Gold: {medalCounts[0]}, Silver: {medalCounts[1]}, Bronze: {medalCounts[2]}</p>
+        <p className="result">The most popular day: {day.toCalDate(state.startDate, highscoreDay)}</p>
+        <p className="result">The soonest everyone's free: {day.toCalDate(state.startDate, soonestDay)}</p>
       </div>
     );
   };

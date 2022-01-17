@@ -78,6 +78,11 @@ const getHighscoreDay = (formsArr) => {
   return scores.indexOf(highScore);
 };
 
+const getSoonestDay = (formsArr) => {
+  const available = availableDays(formsArr);
+  return available[0];
+};
+
 const medalCounts = (formsArr, bestDay) =>
   [3, 2, 1].map((val) => getMedalCount(formsArr, bestDay, val));
 
@@ -86,15 +91,17 @@ const finalResult = {
   getBestDay,
   medalCounts,
   getHighscoreDay,
+  getSoonestDay,
 };
 
 module.exports = finalResult;
 
-// const testData = [
-//   [0, 1, 0, 0, 3, 2],
-//   [0, 0, 1, 0, 0, 1],
-//   [0, 1, 2, 1, 3, 2],
-// ];
+const testData = [
+  [0, 1, 0, 0, 3, 2],
+  [0, 1, 1, 0, 0, 1],
+  [0, 1, 2, 1, 3, 2],
+];
 
 // console.log(getBestDay(testData));
 // console.log(getHighscoreDay(testData));
+console.log(getSoonestDay(testData));
