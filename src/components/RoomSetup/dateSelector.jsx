@@ -27,8 +27,11 @@ export default class DateSelector extends React.Component {
     }
     const formattedDays = selectedDays.map(date => date.toISOString().split('T')[0]);
     const sortedArray = formattedDays.sort();
-    console.log(sortedArray);
-    this.setState({ selectedDays });
+    startDate = sortedArray[0]
+    endDate = sortedArray.at(-1)
+    this.setState({ selectedDays }); 
+    this.setState({ startDate }); 
+    this.setState({ endDate }); 
   }
 
   render() {
@@ -37,7 +40,7 @@ export default class DateSelector extends React.Component {
         <DayPicker
           selectedDays={this.state.selectedDays}
           onDayClick={this.handleDayClick}
-          startDate={this.state.selectedDays[0]}
+          startDate={this.handleDayClick}
           endDate={this.state.selectedDays[-1]}
         />
       </div>
