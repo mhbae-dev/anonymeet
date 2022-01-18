@@ -2,8 +2,6 @@ import React from 'react'
 import { useParams, useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { useState } from 'react'
-import DateSelector from './dateSelector';
-import Select from 'react-select'
 
 const RoomSetup = (props) => {
   let navigate = useNavigate();
@@ -11,8 +9,6 @@ const RoomSetup = (props) => {
   // ---------------
   // STATE HANDLING
   // ---------------
-
-  const dateSelector = <DateSelector/>
 
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, '0');
@@ -67,18 +63,11 @@ const RoomSetup = (props) => {
     navigate(`../room/${props.getRoomId()}`, { state: stateParams });
   }
 
-  const options = [
-    { value: 'I would like to select a range of dates', label: 'I would like to select a range of dates'},
-    { value: 'I would like to specific dates', label: 'I would like to select specific dates'},
-  ]
 
   return (
     <div className="roomsetup">
       <div className="roomsetup_form">
         <form onSubmit={handleSubmit}>
-          <h4>Would you like to submit a date range or a set specific dates to choose from?</h4>
-          <Select options={options} />
-          <DateSelector/> 
           <label>Start Dates
             <input 
               type='date' 
@@ -106,7 +95,7 @@ const RoomSetup = (props) => {
             </input>
           </label>
           <button type='submit' 
-          // onClick={() => { navigate("../room");}}
+          onClick={() => { navigate("../room");}}
           >
             Submit Preferences
           </button>
