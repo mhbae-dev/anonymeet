@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { useState } from 'react'
 import DateSelector from './dateSelector';
+import Select from 'react-select'
 
 const RoomSetup = (props) => {
   let navigate = useNavigate();
@@ -20,8 +21,8 @@ const RoomSetup = (props) => {
   
   today = dd + '/' + mm + '/' + yyyy;
 
-  const [startDate, setStartDate] = useState(dateSelector.startDate);
-  const [endDate, setEndDate] = useState(dateSelector.endDate);
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(today);
   const [friendCount, setFriendCount] = useState(3);
 
   const handleStartDate = (event) => {
@@ -66,12 +67,19 @@ const RoomSetup = (props) => {
     navigate(`../room/${props.getRoomId()}`, { state: stateParams });
   }
 
+  const options = [
+    { value: 'I would like to select a range of dates', label: 'I would like to select a range of dates'},
+    { value: 'I would like to specific dates', label: 'I would like to select specific dates'},
+  ]
+
   return (
     <div className="roomsetup">
       <div className="roomsetup_form">
         <form onSubmit={handleSubmit}>
+          <h4>Would you like to submit a date range or a set specific dates to choose from?</h4>
+          <Select options={options} />
           <DateSelector/> 
-          {/* <label>Start Dates
+          <label>Start Dates
             <input 
               type='date' 
               placeholder='dd/mm/yyyy'
@@ -88,7 +96,7 @@ const RoomSetup = (props) => {
               value={endDate}
               onChange={handleEndDate}>
             </input>
-          </label> */}
+          </label>
           <label>Number of Attendees
             <input
               type='number'
