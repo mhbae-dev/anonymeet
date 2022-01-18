@@ -125,35 +125,3 @@ const finalResult = {
 };
 
 module.exports = finalResult;
-
-const testData = [
-  [1, 2, 1, 1],
-  [3, 1, 3, 1],
-  [2, 2, 2, 1],
-];
-
-// const testDataFree = [
-//   [0, 1, 0, 0, 3, 2],
-//   [0, 1, 1, 0, 3, 1],
-//   [0, 1, 2, 1, 3, 2],
-// ];
-
-// const testDataHigh = [
-//   [0, 1, 0, 0, 3, 2],
-//   [0, 1, 1, 0, 0, 1],
-//   [0, 1, 2, 1, 3, 2],
-//   [0, 1, 2, 1, 3, 2],
-//   [0, 1, 2, 1, 3, 2],
-//   [0, 1, 2, 1, 3, 2],
-//   [0, 1, 2, 1, 3, 2],
-//   [0, 1, 2, 1, 3, 2],
-//   [0, 1, 2, 1, 3, 2],
-// ];
-
-// // // console.log(getBestDay(testData));
-// // // console.log(getHighscoreDay(testData));
-// // // console.log(getSoonestDay(testData));
-
-// console.log(getFinalResult(testDataFree)); // { best: 5, secondary: 4, bestMedals: [0, 2, 1, 0], secondaryMedals: [2, 0, 0, 1] }
-// console.log(getFinalResult(testDataHigh));
-console.log(getFinalResult(testData));
