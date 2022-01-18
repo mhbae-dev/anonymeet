@@ -86,24 +86,22 @@ const getSoonestDay = (formsArr) => {
 const medalCounts = (formsArr, bestDay) =>
   [3, 2, 1, 0].map((val) => getMedalCount(formsArr, bestDay, val));
 
-const scoreComparison = (highFreeDayScore, highScoreDayScore) => {
-  if (highFreeDayScore === highScoreDayScore) return 0;
-  return highScoreDayScore / highFreeDayScore - 1;
+const scoreComparison = (formsArr, highFreeDay, highScoreDay) => {
+  const scoreFree = dayScore(formsArr, highFreeDay),
+    scoreScore = dayScore(formsArr, highScoreDay);
+  if (scoreFree === scoreScore) return 0;
+  return scoreScore / scoreFree - 1;
 };
 
 const getFinalResult = (formsArr) => {
-  const highFreeDay = getHighFreeDay(formsArr); // 5
-  const highScoreDay = getHighScoreDay(formsArr); // 4
+  const highFreeDay = getHighFreeDay(formsArr),
+    highScoreDay = getHighScoreDay(formsArr),
+    highFreeDayMedals = medalCounts(formsArr, highFreeDay),
+    highScoreDayMedals = medalCounts(formsArr, highScoreDay);
 
-  const highFreeDayScore = dayScore(formsArr, highFreeDay); // 5
-  const highScoreDayScore = dayScore(formsArr, highScoreDay); // 6
+  const scoreDifference = scoreComparison(formsArr, highFreeDay, highScoreDay);
 
-  const scoreDifference = scoreComparison(highFreeDayScore, highScoreDayScore); //0.20 rd up
-  const highFreeDayMedals = medalCounts(formsArr, highFreeDay);
-  const highScoreDayMedals = medalCounts(formsArr, highScoreDay);
-
-  const highScoreDayBusy = highScoreDayMedals[3]; // 1
-  const busyPercent = highScoreDayBusy / formsArr.length; //0.33 rd down
+  const busyPercent = highScoreDayMedals[3] / formsArr.length;
 
   if (busyPercent > scoreDifference) {
     return {
