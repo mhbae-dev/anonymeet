@@ -88,7 +88,7 @@ const medalCounts = (formsArr, bestDay) =>
 
 const scoreComparison = (highFreeDayScore, highScoreDayScore) => {
   if (highFreeDayScore === highScoreDayScore) return 0;
-  return (highScoreDayScore / highFreeDayScore) - 1
+  return highScoreDayScore / highFreeDayScore - 1;
 };
 
 const getFinalResult = (formsArr) => {
@@ -102,9 +102,24 @@ const getFinalResult = (formsArr) => {
   const highFreeDayMedals = medalCounts(formsArr, highFreeDay);
   const highScoreDayMedals = medalCounts(formsArr, highScoreDay);
 
-  const highScoreDayBusy = highScoreDayMedals[3] // 1
-  const busyPercent = highScoreDayBusy/(formsArr.length) //0.33 rd down
-  console.log(busyPercent)
+  const highScoreDayBusy = highScoreDayMedals[3]; // 1
+  const busyPercent = highScoreDayBusy / formsArr.length; //0.33 rd down
+
+  if (busyPercent > scoreDifference) {
+    return {
+      best: highFreeDay,
+      secondary: highScoreDay,
+      bestMedals: highFreeDayMedals,
+      secondaryMedals: highScoreDayMedals,
+    };
+  } else {
+    return {
+      best: highScoreDay,
+      secondary: highFreeDay,
+      bestMedals: highScoreDayMedals,
+      secondaryMedals: highFreeDayMedals,
+    };
+  }
 };
 
 const finalResult = {
@@ -117,9 +132,21 @@ const finalResult = {
 
 module.exports = finalResult;
 
-const testData = [
+const testDataFree = [
   [0, 1, 0, 0, 3, 2],
   [0, 1, 1, 0, 0, 1],
+  [0, 1, 2, 1, 3, 2],
+];
+
+const testDataHigh = [
+  [0, 1, 0, 0, 3, 2],
+  [0, 1, 1, 0, 0, 1],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
   [0, 1, 2, 1, 3, 2],
 ];
 
@@ -127,4 +154,5 @@ const testData = [
 // console.log(getHighscoreDay(testData));
 // console.log(getSoonestDay(testData));
 
-console.log(getFinalResult(testData)); // { best: 5, secondary: 4, bestMedals: [0, 2, 1, 0], secondaryMedals: [2, 0, 0, 1] }
+console.log(getFinalResult(testDataFree)); // { best: 5, secondary: 4, bestMedals: [0, 2, 1, 0], secondaryMedals: [2, 0, 0, 1] }
+console.log(getFinalResult(testDataHigh));
