@@ -93,28 +93,32 @@ const scoreComparison = (formsArr, highFreeDay, highScoreDay) => {
   return scoreScore / scoreFree - 1;
 };
 
+const newResultPackage = (pB, pBM, pN = null, pNM = null, pBH = false) => {
+  return {
+    best: pB,
+    bestMedals: pBM,
+    next: pN,
+    nextMedals: pNM,
+    bestIsHighest: pBH,
+  };
+};
+
 const getFinalResult = (formsArr) => {
-  const highFreeDay = getHighFreeDay(formsArr),
-    highScoreDay = getHighScoreDay(formsArr),
-    highFreeDayMedals = medalCounts(formsArr, highFreeDay),
-    highScoreDayMedals = medalCounts(formsArr, highScoreDay);
+  const fDay = getHighFreeDay(formsArr),
+    sDay = getHighScoreDay(formsArr),
+    fDayMedals = medalCounts(formsArr, fDay),
+    sDayMedals = medalCounts(formsArr, sDay);
 
-  const scorePercent = scoreComparison(formsArr, highFreeDay, highScoreDay),
-    busyPercent = highScoreDayMedals[3] / formsArr.length;
+  const scorePercent = scoreComparison(formsArr, fDay, sDay),
+    busyPercent = sDayMedals[3] / formsArr.length;
 
-  return busyPercent > scorePercent
-    ? {
-        best: highFreeDay,
-        secondary: highScoreDay,
-        bestMedals: highFreeDayMedals,
-        secondaryMedals: highScoreDayMedals,
-      }
-    : {
-        best: highScoreDay,
-        secondary: highFreeDay,
-        bestMedals: highScoreDayMedals,
-        secondaryMedals: highFreeDayMedals,
-      };
+  if (fDay === sDay) {
+    return newResultPackage(fDay, fDayMedals);
+  } else if (busyPercent >= scorePercent) {
+    return newResultPackage(fDay, fDayMedals, sDay, sDayMedals);
+  } else {
+    return newResultPackage(sDay, sDayMedals, fDay, fDayMedals, true);
+  }
 };
 
 const finalResult = {
@@ -123,3 +127,28 @@ const finalResult = {
 };
 
 module.exports = finalResult;
+
+const testDataFree = [
+  [0, 1, 0, 0, 3, 2],
+  [0, 1, 1, 0, 3, 1],
+  [0, 1, 2, 1, 3, 2],
+];
+
+const testDataHigh = [
+  [0, 1, 0, 0, 3, 2],
+  [0, 1, 1, 0, 0, 1],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+  [0, 1, 2, 1, 3, 2],
+];
+
+// // console.log(getBestDay(testData));
+// // console.log(getHighscoreDay(testData));
+// // console.log(getSoonestDay(testData));
+
+console.log(getFinalResult(testDataFree)); // { best: 5, secondary: 4, bestMedals: [0, 2, 1, 0], secondaryMedals: [2, 0, 0, 1] }
+console.log(getFinalResult(testDataHigh));
