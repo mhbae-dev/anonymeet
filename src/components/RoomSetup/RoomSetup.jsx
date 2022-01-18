@@ -15,7 +15,7 @@ const RoomSetup = (props) => {
   let mm = String(today.getMonth() + 1).padStart(2, '0');
   let yyyy = today.getFullYear();
   
-  today = dd + '/' + mm + '/' + yyyy;
+  today = yyyy + '-' + mm + '-' + dd;
 
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
@@ -56,13 +56,10 @@ const RoomSetup = (props) => {
   // ---------------
   // NAV HANDLING
   // ---------------
-  
-
 
   const proceedToRoom = (stateParams) => {
     navigate(`../room/${props.getRoomId()}`, { state: stateParams });
   }
-
 
   return (
     <div className="roomsetup">
@@ -95,7 +92,7 @@ const RoomSetup = (props) => {
             </input>
           </label>
           <button type='submit' 
-          onClick={() => { navigate("../room");}}
+          // onClick={() => { navigate("../room");}}
           >
             Submit Preferences
           </button>

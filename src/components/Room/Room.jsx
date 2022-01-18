@@ -60,27 +60,16 @@ const Room = (props) => {
     }
   };
 
-  // const getBeginDate = (start = state.startDate) => {
-  //   const startDigits = start.slice(-2);
-  //   return Number(startDigits);
-  // };
-
   const setResult = () => {
     const roomForms = state.roomFormsRatings
-    if(!finalResult.isReady(roomForms)) return <h2>Waiting for results...</h2>;
-    const bestDay = finalResult.getBestDay(roomForms),
-      highscoreDay = finalResult.getHighscoreDay(roomForms), 
-      medalCounts = finalResult.medalCounts(roomForms, bestDay),
-      soonestDay = finalResult.getSoonestDay(roomForms)
-    if(bestDay < 0) return <h2>No one is available on any date! <br></br> Perhaps try different dates?</h2>;
+    if(!finalResult.isReady(roomForms)) return <h2>Waiting for results...</h2>
+    const results = finalResult.getFinalResult(roomForms);
     return (
       <div>
         <h2>SUCCESS!</h2>
         <p>The best day for everyone:</p>
-        <p className="result">{day.toCalDate(state.startDate, bestDay)}</p>
-        <p>Gold: {medalCounts[0]}, Silver: {medalCounts[1]}, Bronze: {medalCounts[2]}</p>
-        <p className="result">The most popular day: {day.toCalDate(state.startDate, highscoreDay)}</p>
-        <p className="result">The soonest everyone's free: {day.toCalDate(state.startDate, soonestDay)}</p>
+        <p className="result">{day.toCalDate(state.startDate, results.best)}</p>
+        <p>Gold: {results.bestMedals[0]}, Silver: {results.bestMedals[1]}, Bronze: {results.bestMedals[2]}, Unavailable: {results.bestMedals[3]}</p>
       </div>
     );
   };
