@@ -112,13 +112,9 @@ const getFinalResult = (formsArr) => {
   const scorePercent = scoreComparison(formsArr, fDay, sDay),
     busyPercent = sDayMedals[3] / formsArr.length;
 
-  if (fDay === sDay) {
-    return newResultPackage(fDay, fDayMedals);
-  } else if (busyPercent >= scorePercent) {
-    return newResultPackage(fDay, fDayMedals, sDay, sDayMedals);
-  } else {
-    return newResultPackage(sDay, sDayMedals, fDay, fDayMedals, true);
-  }
+  if (fDay === sDay) return newResultPackage(fDay, fDayMedals);
+  if (busyPercent >= scorePercent) return newResultPackage(fDay, fDayMedals, sDay, sDayMedals);
+  return newResultPackage(sDay, sDayMedals, fDay, fDayMedals, true);
 };
 
 const finalResult = {
