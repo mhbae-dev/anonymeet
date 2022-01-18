@@ -64,14 +64,24 @@ const Room = (props) => {
     const roomForms = state.roomFormsRatings
     if(!finalResult.isReady(roomForms)) return <h2>Waiting for results...</h2>
     const results = finalResult.getFinalResult(roomForms);
-    return (
-      <div>
-        <h2>SUCCESS!</h2>
-        <p>The best day for everyone:</p>
-        <p className="result">{day.toCalDate(state.startDate, results.best)}</p>
-        <p>Gold: {results.bestMedals[0]}, Silver: {results.bestMedals[1]}, Bronze: {results.bestMedals[2]}, Unavailable: {results.bestMedals[3]}</p>
-      </div>
-    );
+
+    if (results.best != null) {
+      return (
+        <div>
+          <h2>SUCCESS!</h2>
+          <p>The best day for everyone:</p>
+          <p className="result">{day.toCalDate(state.startDate, results.best)}</p>
+          <p>Gold: {results.bestMedals[0]}, Silver: {results.bestMedals[1]}, Bronze: {results.bestMedals[2]}, Unavailable: {results.bestMedals[3]}</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h2>WHOOPS!</h2>
+          <p>No one is available on any date!</p>
+        </div>
+      );
+    }
   };
 
   console.log('Room.jsx state: ', state);
