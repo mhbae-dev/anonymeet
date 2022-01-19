@@ -3,14 +3,14 @@ import {render, screen, fireEvent} from '@testing-library/react';
 import RoomSetup from "./RoomSetup";
 import {MemoryRouter} from "react-router-dom";
 
-test("it renders RoomSetup component correctly and date field is present", () => {
+test("it renders RoomSetup component correctly and description information is present", () => {
     const { getByText } = render(
         <MemoryRouter>
             <RoomSetup />
         </MemoryRouter>
     );
 
-    expect(getByText(/Start Date/i)).toBeInTheDocument();
+    expect(getByText(/For example, if you want a meetup/i)).toBeInTheDocument();
 });
 
 test('Submit Preferences button exists on the page', () => {
