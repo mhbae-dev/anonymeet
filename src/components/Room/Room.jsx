@@ -20,6 +20,7 @@ const Room = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+    console.log(`this is trying to see what system is pulling ${ props }`)
   // ---------------
   // NAV HANDLING
   // ---------------

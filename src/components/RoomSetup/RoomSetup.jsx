@@ -42,7 +42,7 @@ const RoomSetup = (props) => {
     //   }
 
     props.createRoom({startDate: startDate, endDate: endDate, friendCount: intFriendCount, roomFormsRatings: ratings},navigate)
-
+    console.log(`this is trying to see what doing with handle submit ${ props.createRoom }`)
     // console.log(state);
     // proceedToRoom(state)
   }

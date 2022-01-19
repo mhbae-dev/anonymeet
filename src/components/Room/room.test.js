@@ -1,29 +1,32 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Room from "./Room";
-import {MemoryRouter, } from "react-router-dom";
+import {BrowserRouter, MemoryRouter, Route, Router,} from "react-router-dom";
 
 
 const roomRender = () => {    
 render(
     <MemoryRouter initialEntries={[{
-            "pathname": "/room",
-            "search": "",
-            "hash": "",
-            "state": {
-                "roomID": 1,
+        "pathname": "/room/:qouu3s9740c",
+        "search": "",
+        "hash": "",
+        "state": {
+            "roomData": {
+                "roomID": "qouu3s9740c",
                 "startDate": "2022-01-12",
                 "endDate": "2022-01-19",
-                "friendCount": "4",
-                "friendCurrent": -1,
-                "roomFormsRatings": [
-                    []
-                ]
-            },
-            "key": "t03o8cuy"
-    }]
-    }>
-        <Room />
+                "friendCount": "3",
+                "roomFormsRatings": [Array(0), Array(0), Array(0)]
+            }
+        },
+        "key": "k4g2ctxm",
+        "params": {
+            "roomidnum": ":qouu3s9740c",
+            "pathname": "/room/:qouu3s9740c",
+            "pathnameBase": "/room/:qouu3s9740c"
+        }
+    }]}>
+         <Room />
     </MemoryRouter>
 )};
 

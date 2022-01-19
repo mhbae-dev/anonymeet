@@ -53,6 +53,7 @@ function App() {
           <button onClick={() => expressLink.resetRoomData(setApiState)}>
             Reset Database
           </button>
+            <span></span>
         </p>
         <BrowserRouter>
           <Routes>
