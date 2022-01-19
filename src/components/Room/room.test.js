@@ -34,7 +34,7 @@ it('renders Room Correctly', () => {
 
 it('renders the correct number of buttons based on friend count', () => {
     roomRender();
-    expect(screen.getByRole('button',{name: /Response 4/i})).toBeInTheDocument();
+    expect(screen.getByRole('button',{name: /Response 4/i})).toBeInTheDocument(); 
 })
 
 
