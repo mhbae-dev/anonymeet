@@ -11,7 +11,8 @@ Our dev team created this app with four key features in mind:
 
 We believe Heyday is the best means for a group to find the most convenient day for everyone to meet up.
 
-![heydayScreenshot](https://user-images.githubusercontent.com/41869496/154087014-fe453606-0780-4963-a516-fc5c96146bcf.png)
+![heyday1](https://user-images.githubusercontent.com/41869496/156926963-a93e71c0-44ea-4b1e-8201-d5c1fee87f05.gif)
+![heyday2](https://user-images.githubusercontent.com/41869496/156926977-5689ba2a-62b8-44f4-a1bc-cd9dc89e08eb.gif)
 
 ## Access
 
